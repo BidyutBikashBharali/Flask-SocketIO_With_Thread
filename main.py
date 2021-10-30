@@ -20,7 +20,7 @@ def print_something(msg):
     # socketio.send("Done") # broadcasting
     status.update({f"{msg}" : "Done"})
         
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
