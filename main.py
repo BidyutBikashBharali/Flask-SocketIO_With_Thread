@@ -9,6 +9,20 @@ socketio = SocketIO(app)
 
 status = {}
 
+@app.before_first_request
+def bbb():
+    sleep(15)
+    t = Thread(target=print_line, daemon = True)
+    t.start()
+
+
+def print_line():
+    count = 0
+    print("Hello this(print_line) is running on thread\n")
+    while count<10:
+        count+=1
+        print(count, "seconds gone!\n")
+        sleep(1.5)
 
 def print_something(msg):
     count = 0
