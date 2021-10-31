@@ -5,6 +5,7 @@ from time import sleep
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
+app.debug = True
 socketio = SocketIO(app)
 
 status = {}
