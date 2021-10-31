@@ -45,6 +45,8 @@ def socket_bbb(msg):
     #     print(msg)
 
     print("MMMEEESSSAAAGGEEE::: ", msg)
+    send(msg)
+    print("Message Sent")
 
 
 if __name__ == '__main__':
