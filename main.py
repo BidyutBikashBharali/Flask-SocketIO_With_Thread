@@ -43,6 +43,9 @@ def socket_bbb(msg):
                 send("Done")
                 print("Status: ", status)
                 break
+        del status.get(msg)
+        print("Status: ", status)
+
     if msg == "User has connected!":
         print(msg)
 
