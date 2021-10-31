@@ -25,31 +25,27 @@ def print_something(msg):
         sleep(1.5)
     # socketio.send("Done") # broadcasting
     status.update({f"{msg}" : "Done"})
-        
-
-@app.before_first_request
-def bbb():
-    while True:
-        print("HIIII")
-        sleep(3)
 
 
 @socketio.on('message')
 def socket_bbb(msg):
     str(msg)
-    if msg != "User has connected!":
-        t0 = Thread(target=print_something, args=(msg,), daemon = True)
-        t0.start()
+    # if msg != "User has connected!":
+    #     t0 = Thread(target=print_something, args=(msg,), daemon = True)
+    #     t0.start()
         
-        while True:
-            print("Status: ", status)
-            sleep(1.5)
-            if status.get(msg) == "Done":
-                send("Done")
-                print("Status: ", status)
-                break
-    if msg == "User has connected!":
-        print(msg)
+    #     while True:
+    #         print("Status: ", status)
+    #         sleep(1.5)
+    #         if status.get(msg) == "Done":
+    #             send("Done")
+    #             print("Status: ", status)
+    #             break
+    # if msg == "User has connected!":
+    #     print(msg)
+
+    print("MMMEEESSSAAAGGEEE::: ", msg)
+
 
 if __name__ == '__main__':
 	socketio.run(app, debug=True)
