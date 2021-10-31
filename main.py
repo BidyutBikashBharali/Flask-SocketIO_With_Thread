@@ -9,20 +9,12 @@ socketio = SocketIO(app)
 
 status = {}
 
-@app.before_first_request
-def bbb():
-    sleep(15)
-    t = Thread(target=print_line, daemon = True)
-    t.start()
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    return render_template('index.html')
 
 
-def print_line():
-    count = 0
-    print("Hello this(print_line) is running on thread\n")
-    while count<10:
-        count+=1
-        print(count, "seconds gone!\n")
-        sleep(1.5)
 
 def print_something(msg):
     count = 0
@@ -34,10 +26,12 @@ def print_something(msg):
     # socketio.send("Done") # broadcasting
     status.update({f"{msg}" : "Done"})
         
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    return render_template('index.html')
 
+@app.before_first_request
+def bbb():
+    while True:
+        print("HIIII")
+        sleep(3)
 
 
 @socketio.on('message')
